@@ -1,0 +1,6 @@
+{
+  "name": "YukNgoding",
+  "description": "Aplikasi web edukasi pemrograman interaktif berbasis gamifikasi untuk semua pembelajar: Python, JavaScript, SQL, kuis, simulasi visual, dan maskot Byte.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

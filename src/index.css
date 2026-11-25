@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0F172A;
+  --color-muted: #F1F5F9;
+  --color-muted-foreground: #475569;
+  --color-border: #E2E8F0;
+  --color-brand-deep: #1E3A8A;
+  --color-primary: #2563EB;
+  --color-on-primary: #FFFFFF;
+  --color-gamify: #7C3AED;
+  --color-on-gamify: #FFFFFF;
+  --color-success: #10B981;
+  --color-success-ink: #047857;
+  --color-warning: #D97706;
+  --color-destructive: #DC2626;
+  --color-ring: #2563EB;
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+
+  code, pre, kbd {
+    font-family: var(--font-mono);
+  }
+
+  button, a, select, input[type="range"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Byte Mascot Lightweight Animations (compositor-only: transform & opacity) */
+@keyframes byte-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes byte-float-soft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes byte-bounce {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  35% {
+    transform: translateY(-10px) scale(1.03);
+  }
+  65% {
+    transform: translateY(-2px) scale(0.99);
+  }
+}
+
+@keyframes byte-blink {
+  0%, 44%, 48%, 92%, 96%, 100% {
+    transform: scaleY(1);
+  }
+  46%, 94% {
+    transform: scaleY(0.12);
+  }
+}
+
+@keyframes byte-orbit {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(4deg);
+  }
+}
+
+@keyframes byte-sparkle {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.byte-anim-float {
+  animation: byte-float 3.2s ease-in-out infinite;
+}
+
+.byte-anim-float-soft {
+  animation: byte-float-soft 3.6s ease-in-out infinite;
+}
+
+.byte-anim-bounce {
+  animation: byte-bounce 0.75s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.byte-anim-blink {
+  animation: byte-blink 4.4s ease-in-out infinite;
+}
+
+.byte-anim-orbit {
+  transform-origin: 80px 84px;
+  animation: byte-orbit 4.8s ease-in-out infinite;
+}
+
+.byte-anim-sparkle {
+  transform-origin: 80px 80px;
+  animation: byte-sparkle 1.1s ease-in-out infinite;
+}
+
+.byte-anim-bulb {
+  transform-origin: 129px 32px;
+  animation: byte-sparkle 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
