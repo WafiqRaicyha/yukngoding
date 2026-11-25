@@ -189,7 +189,7 @@ export function ProfileView({
       </div>
 
       {/* 1. Identity & Mascot Card */}
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div className="surface-card rounded-3xl overflow-hidden">
         <div className={`h-1.5 w-full ${activeAccent.topBarClass}`} aria-hidden="true" />
         <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-7 flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
@@ -263,31 +263,31 @@ export function ProfileView({
       {/* 2. Personal Stats & Language Breakdown */}
       <div className="space-y-5">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
+          <div className="surface-card rounded-2xl p-4 sm:p-5">
             <p className="text-xs font-medium text-slate-500">Total Poin</p>
             <p className="text-2xl font-extrabold text-slate-900 font-mono tabular-nums mt-1">
               {gamifikasi.totalPoin}
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
+          <div className="surface-card rounded-2xl p-4 sm:p-5">
             <p className="text-xs font-medium text-slate-500">Total XP</p>
             <p className="text-2xl font-extrabold text-[#7C3AED] font-mono tabular-nums mt-1">
               {gamifikasi.xp}
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
+          <div className="surface-card rounded-2xl p-4 sm:p-5">
             <p className="text-xs font-medium text-slate-500">Materi Selesai</p>
             <p className="text-2xl font-extrabold text-emerald-700 font-mono tabular-nums mt-1">
               {materiIds.length}/{MATERI_LIST.length}
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
+          <div className="surface-card rounded-2xl p-4 sm:p-5">
             <p className="text-xs font-medium text-slate-500">Simulasi Selesai</p>
             <p className="text-2xl font-extrabold text-[#2563EB] font-mono tabular-nums mt-1">
               {gamifikasi.simulasiSelesai.length}/3
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-xl p-4 col-span-2 sm:col-span-1">
+          <div className="surface-card rounded-2xl p-4 sm:p-5 col-span-2 sm:col-span-1">
             <p className="text-xs font-medium text-slate-500">Badge Terbuka</p>
             <p className="text-2xl font-extrabold text-[#1E3A8A] font-mono tabular-nums mt-1">
               {gamifikasi.badge.length}/{ACHIEVEMENTS.length}
@@ -296,7 +296,7 @@ export function ProfileView({
         </div>
 
         {/* 3-Language Progress Bars */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
+        <div className="surface-card rounded-2xl p-5 sm:p-6">
           <h2 className="text-base font-bold text-slate-900 mb-4">Progres per Bahasa</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {LANG_CATEGORIES.map((lang) => {
@@ -324,7 +324,7 @@ export function ProfileView({
         </div>
 
         {/* Achievement Badges Gallery */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+        <div className="surface-card rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-lg font-bold text-slate-900">Etalase Achievement Badges</h2>
@@ -389,7 +389,7 @@ export function ProfileView({
         {/* Edit Profile Form */}
         <form
           onSubmit={handleProfileSave}
-          className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 space-y-5"
+          className="lg:col-span-7 surface-card rounded-2xl p-6 space-y-5"
         >
           <div>
             <h2 className="text-lg font-bold text-slate-900">Edit Profil</h2>
@@ -521,7 +521,7 @@ export function ProfileView({
         <div className="lg:col-span-5 space-y-6">
           <form
             onSubmit={handlePasswordSubmit}
-            className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4"
+            className="surface-card rounded-2xl p-6 space-y-4"
             noValidate
           >
             <div className="flex items-center justify-between gap-2">
@@ -640,7 +640,7 @@ export function ProfileView({
       </div>
 
       {/* 4. Completed Modules History Table */}
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div className="surface-card rounded-2xl overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <h2 className="text-base font-bold text-slate-900">Riwayat Materi Selesai</h2>
           <span className="text-xs text-slate-500 tabular-nums">

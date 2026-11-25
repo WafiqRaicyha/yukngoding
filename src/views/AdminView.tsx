@@ -209,31 +209,31 @@ export function AdminView({
       </div>
 
       {/* 4 Device KPI Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="surface-card rounded-2xl p-5">
           <p className="text-xs font-medium text-slate-500">Total Akun Pembelajar</p>
-          <p className="text-2xl font-extrabold text-slate-900 font-mono tabular-nums mt-1">
+          <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono tabular-nums mt-1.5">
             {totalLearners}
           </p>
           <p className="text-xs text-slate-500 mt-1">Terdaftar lokal di perangkat</p>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5">
+        <div className="surface-card rounded-2xl p-5">
           <p className="text-xs font-medium text-slate-500">Rata-rata Penyelesaian</p>
-          <p className="text-2xl font-extrabold text-emerald-700 font-mono tabular-nums mt-1">
+          <p className="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-mono tabular-nums mt-1.5">
             {avgCompletionPct}%
           </p>
           <p className="text-xs text-slate-500 mt-1">Dari 12 modul kurikulum</p>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5">
+        <div className="surface-card rounded-2xl p-5">
           <p className="text-xs font-medium text-slate-500">Total Soal Kuis Tuntas</p>
-          <p className="text-2xl font-extrabold text-[#2563EB] font-mono tabular-nums mt-1">
+          <p className="text-2xl sm:text-3xl font-extrabold text-[#2563EB] font-mono tabular-nums mt-1.5">
             {totalQuizzesAnswered}
           </p>
           <p className="text-xs text-slate-500 mt-1">Akumulasi seluruh user</p>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5">
+        <div className="surface-card rounded-2xl p-5">
           <p className="text-xs font-medium text-slate-500">Peringkat Teratas Lokal</p>
-          <p className="text-lg font-extrabold text-[#7C3AED] truncate mt-1">
+          <p className="text-lg sm:text-xl font-extrabold text-[#7C3AED] truncate mt-1.5">
             {topLearner ? topLearner.profile.namaAlias : 'Belum ada'}
           </p>
           <p className="text-xs text-slate-500 font-mono tabular-nums mt-1">
@@ -245,7 +245,7 @@ export function AdminView({
       </div>
 
       {/* User Management Table */}
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div className="surface-card rounded-2xl overflow-hidden">
         <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold text-slate-900">Daftar Akun Pembelajar</h2>
@@ -361,7 +361,7 @@ export function AdminView({
       {/* Global Announcement Board */}
       <form
         onSubmit={handleSaveAnnouncement}
-        className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4"
+        className="surface-card rounded-2xl p-6 space-y-4"
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">

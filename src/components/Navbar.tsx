@@ -54,14 +54,14 @@ export function Navbar({
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4 sm:gap-8">
+    <header className="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-6 sm:gap-8">
         {/* Zone 1: Single-line Brand Logo */}
         <button
           type="button"
           onClick={() => onSelectTab(currentUser.role === 'admin' ? 'admin' : 'dashboard')}
           aria-label="YukNgoding — Beranda"
-          className="inline-flex items-center justify-center h-10 sm:h-12 w-[134px] sm:w-[160px] overflow-hidden shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
+          className="inline-flex items-center justify-center h-10 sm:h-12 w-[134px] sm:w-[160px] overflow-hidden shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
         >
           <img
             src="/assets/aistudio/logo_yukngoding_7eed5a86.jpg"
@@ -71,7 +71,7 @@ export function Navbar({
         </button>
 
         {/* Zone 2: Desktop Single-Line Navigation Links */}
-        <nav aria-label="Navigasi utama" className="hidden md:flex items-center gap-6">
+        <nav aria-label="Navigasi utama" className="hidden md:flex items-center gap-7">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             const isAdminLink = item.id === 'admin';
@@ -88,14 +88,14 @@ export function Navbar({
                       : 'text-[#2563EB] font-semibold'
                     : isAdminLink
                       ? 'text-[#6D28D9] hover:text-[#4C1D95]'
-                      : 'text-slate-600 hover:text-slate-900'
+                      : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
                 {item.label}
                 {isActive && (
                   <span
                     aria-hidden="true"
-                    className={`absolute inset-x-0 -bottom-[17px] h-0.5 ${
+                    className={`absolute inset-x-0 -bottom-[17px] h-[2.5px] rounded-full ${
                       isAdminLink ? 'bg-[#7C3AED]' : 'bg-[#2563EB]'
                     }`}
                   />
@@ -112,14 +112,14 @@ export function Navbar({
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-expanded={menuOpen}
             aria-haspopup="menu"
-            className="inline-flex items-center gap-2 pl-1.5 pr-3 py-1.5 text-sm font-medium text-slate-900 bg-slate-100 hover:bg-slate-200/80 rounded-xl transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2.5 pl-1.5 pr-3 py-1.5 text-sm font-medium text-slate-900 bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/80 rounded-xl transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
           >
             <UserAvatar
               avatar={currentUser.profile.avatar}
               level={currentUser.gamifikasi.level}
               size="xs"
             />
-            <span className="max-w-[116px] truncate">{currentUser.profile.namaAlias}</span>
+            <span className="max-w-[120px] truncate">{currentUser.profile.namaAlias}</span>
             <ChevronDown
               className={`w-4 h-4 text-slate-500 transition-transform duration-150 ${
                 menuOpen ? 'rotate-180' : ''
@@ -132,9 +132,9 @@ export function Navbar({
             <div
               role="menu"
               aria-label="Menu akun pengguna"
-              className="absolute right-0 mt-2 w-60 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-50"
+              className="absolute right-0 mt-2 w-64 bg-white border border-slate-200/90 rounded-2xl shadow-xl py-2 z-50 view-enter"
             >
-              <div className="px-3.5 py-2 border-b border-slate-100">
+              <div className="px-4 py-2.5 border-b border-slate-100">
                 <div className="text-sm font-bold text-slate-900 truncate">
                   {currentUser.profile.namaAlias}
                 </div>
@@ -152,7 +152,7 @@ export function Navbar({
                 </div>
               </div>
 
-              <div className="py-1 px-1 space-y-0.5">
+              <div className="py-1.5 px-1.5 space-y-0.5">
                 <button
                   type="button"
                   role="menuitem"
@@ -160,7 +160,7 @@ export function Navbar({
                     setMenuOpen(false);
                     onSelectTab('profile');
                   }}
-                  className="w-full px-2.5 py-2 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-lg inline-flex items-center gap-2 transition-colors"
+                  className="w-full px-3 py-2 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl inline-flex items-center gap-2.5 transition-colors"
                 >
                   <UserIcon className="w-3.5 h-3.5 text-[#2563EB] shrink-0" aria-hidden="true" />
                   <span>Lihat Profile &amp; Pengaturan</span>
@@ -174,7 +174,7 @@ export function Navbar({
                       setMenuOpen(false);
                       onSelectTab('admin');
                     }}
-                    className="w-full px-2.5 py-2 text-left text-xs font-medium text-[#6D28D9] hover:bg-violet-50 rounded-lg inline-flex items-center gap-2 transition-colors"
+                    className="w-full px-3 py-2 text-left text-xs font-medium text-[#6D28D9] hover:bg-violet-50 rounded-xl inline-flex items-center gap-2.5 transition-colors"
                   >
                     <Shield className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                     <span>Panel Admin</span>
@@ -182,7 +182,7 @@ export function Navbar({
                 )}
               </div>
 
-              <div className="border-t border-slate-100 pt-1 px-1">
+              <div className="border-t border-slate-100 pt-1.5 px-1.5">
                 <button
                   type="button"
                   role="menuitem"
@@ -190,7 +190,7 @@ export function Navbar({
                     setMenuOpen(false);
                     onLogout();
                   }}
-                  className="w-full px-2.5 py-2 text-left text-xs font-medium text-red-700 hover:bg-red-50 rounded-lg inline-flex items-center gap-2 transition-colors"
+                  className="w-full px-3 py-2 text-left text-xs font-medium text-red-700 hover:bg-red-50 rounded-xl inline-flex items-center gap-2.5 transition-colors"
                 >
                   <LogOut className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   <span>Keluar (Logout)</span>
@@ -227,7 +227,7 @@ export function Navbar({
               {isActive && (
                 <span
                   aria-hidden="true"
-                  className={`absolute inset-x-0 bottom-0 h-0.5 ${
+                  className={`absolute inset-x-0 bottom-0 h-0.5 rounded-full ${
                     isAdminLink ? 'bg-[#7C3AED]' : 'bg-[#2563EB]'
                   }`}
                 />

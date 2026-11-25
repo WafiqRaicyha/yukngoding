@@ -137,7 +137,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A]">
+    <div className="min-h-screen flex flex-col bg-studio-canvas text-[#0F172A]">
       <Navbar
         activeTab={activeTab}
         onSelectTab={handleNavigate}
@@ -145,16 +145,17 @@ export default function App() {
         onLogout={handleLogout}
       />
 
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        {activeTab === 'dashboard' && (
-          <DashboardView
-            user={currentUser}
-            announcement={announcement}
-            onNavigate={handleNavigate}
-            onOpenCategory={handleOpenCategory}
-            onOpenMateri={handleOpenMateri}
-          />
-        )}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
+        <div key={activeTab} className="view-enter">
+          {activeTab === 'dashboard' && (
+            <DashboardView
+              user={currentUser}
+              announcement={announcement}
+              onNavigate={handleNavigate}
+              onOpenCategory={handleOpenCategory}
+              onOpenMateri={handleOpenMateri}
+            />
+          )}
 
         {activeTab === 'materi' && (
           <MateriView
@@ -213,6 +214,7 @@ export default function App() {
             onPreviewLearning={() => handleNavigate('dashboard')}
           />
         )}
+        </div>
       </main>
 
       <ResetModal

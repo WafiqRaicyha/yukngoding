@@ -50,6 +50,73 @@
   }
 }
 
+/* Modern Light Coding Studio Atmosphere */
+.bg-studio-canvas {
+  background-color: #F8FAFC;
+  background-image:
+    radial-gradient(ellipse 70% 45% at 12% 0%, rgba(37, 99, 235, 0.06), transparent 65%),
+    radial-gradient(ellipse 60% 40% at 88% 4%, rgba(124, 58, 237, 0.055), transparent 65%),
+    radial-gradient(ellipse 45% 35% at 50% 100%, rgba(16, 185, 129, 0.045), transparent 70%);
+}
+
+.bg-prelogin-showcase {
+  background-color: #F3F6FD;
+  background-image:
+    radial-gradient(circle at 12% 16%, rgba(37, 99, 235, 0.14), transparent 44%),
+    radial-gradient(circle at 86% 24%, rgba(124, 58, 237, 0.12), transparent 46%),
+    radial-gradient(circle at 52% 94%, rgba(16, 185, 129, 0.11), transparent 45%),
+    radial-gradient(rgba(30, 58, 138, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+}
+
+.surface-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px -12px rgba(15, 23, 42, 0.07);
+}
+
+.surface-card-interactive {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px -12px rgba(15, 23, 42, 0.07);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.surface-card-interactive:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.24);
+  box-shadow:
+    0 4px 10px -2px rgba(15, 23, 42, 0.06),
+    0 16px 32px -14px rgba(37, 99, 235, 0.14);
+}
+
+.hero-brand-surface {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FF 52%, #F5F3FF 100%);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 18px 40px -22px rgba(30, 58, 138, 0.18);
+}
+
+@keyframes view-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view-enter {
+  animation: view-fade-in 190ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }

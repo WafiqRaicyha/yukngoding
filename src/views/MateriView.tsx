@@ -141,7 +141,7 @@ export function MateriView({
 
       {/* Module Grid */}
       {filteredMateri.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
+        <div className="surface-card rounded-2xl p-10 text-center">
           <p className="text-sm text-slate-600">
             Tidak ada materi yang cocok dengan kombinasi filter saat ini.
           </p>
@@ -151,7 +151,7 @@ export function MateriView({
               setCategoryFilter('Semua');
               setDifficultyFilter('Semua');
             }}
-            className="mt-3 px-4 py-2 text-xs font-semibold text-[#2563EB] bg-blue-50 hover:bg-blue-100 rounded-lg"
+            className="mt-3 px-4 py-2 text-xs font-semibold text-[#2563EB] bg-blue-50 hover:bg-blue-100 rounded-xl"
           >
             Tampilkan Semua Materi
           </button>
@@ -165,7 +165,7 @@ export function MateriView({
             return (
               <article
                 key={materi.id}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-slate-300 transition-colors"
+                className="surface-card-interactive rounded-2xl overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   <div className="p-3 pb-0">
@@ -338,7 +338,7 @@ function MateriDetailWithQuiz({
       </div>
 
       {/* Main Content Card */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div className="surface-card rounded-2xl p-6 sm:p-8 lg:p-10 space-y-6">
         <div className="space-y-2">
           <div className="text-xs font-medium text-slate-500 flex flex-wrap items-center gap-2">
             <span>{materi.kategori}</span>
@@ -407,7 +407,7 @@ function MateriDetailWithQuiz({
       </div>
 
       {/* Interactive Quiz Section with Anti-Farming */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div className="surface-card rounded-2xl p-6 sm:p-8 lg:p-10 space-y-6">
         <div className="flex flex-wrap items-start justify-between gap-3 pb-4 border-b border-slate-100">
           <div>
             <h2 className="text-xl font-bold text-slate-900">Kuis Pemahaman Konsep</h2>

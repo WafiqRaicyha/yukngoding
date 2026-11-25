@@ -63,10 +63,10 @@ export function SimulasiView({
               role="tab"
               aria-selected={active}
               onClick={() => setActiveSim(tab.id)}
-              className={`text-left p-4 rounded-xl border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
+              className={`text-left p-4 sm:p-5 rounded-2xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] ${
                 active
-                  ? 'bg-white border-[#2563EB] shadow-sm'
-                  : 'bg-white/70 border-slate-200 hover:border-slate-300'
+                  ? 'bg-white border-2 border-[#2563EB] shadow-md'
+                  : 'surface-card-interactive'
               }`}
             >
               <div className="flex items-center justify-between gap-2">

@@ -1,4 +1,4 @@
-import { Trophy } from 'lucide-react';
+import { Award, Trophy } from 'lucide-react';
 import { useMemo } from 'react';
 import { getLevelInfo } from '../data/badges';
 import { DEMO_LEADERBOARD_BOTS } from '../data/demoProfiles';
@@ -11,7 +11,6 @@ interface LeaderboardViewProps {
 
 export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps) {
   const rankedList = useMemo(() => {
-    // Combine all registered local learner accounts + 5 demo bots
     const localLearners: DemoLeaderboardEntry[] = allUsers
       .filter((u) => u.role === 'user')
       .map((u) => ({
@@ -19,7 +18,9 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
         namaAlias: u.profile.namaAlias,
         username: u.username,
         peranLabel:
-          u.id === currentUser.id ? `Pembelajar · @${u.username} (Kamu)` : `Pembelajar · @${u.username}`,
+          u.id === currentUser.id
+            ? `Pembelajar · @${u.username} (Kamu)`
+            : `Pembelajar · @${u.username}`,
         totalPoin: u.gamifikasi.totalPoin,
         xp: u.gamifikasi.xp,
         level: u.gamifikasi.level,
@@ -36,12 +37,34 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
     });
   }, [allUsers, currentUser.id]);
 
+  const topThree = rankedList.slice(0, 3);
   const userRankIndex = rankedList.findIndex((e) => e.isCurrentUser);
   const userRank = userRankIndex >= 0 ? userRankIndex + 1 : null;
   const aboveEntry = userRank && userRank > 1 ? rankedList[userRank - 2] : null;
   const pointsNeeded = aboveEntry
     ? Math.max(1, aboveEntry.totalPoin - currentUser.gamifikasi.totalPoin + 1)
     : 0;
+
+  const podiumStyles = [
+    {
+      label: 'Peringkat #1',
+      topBar: 'bg-amber-500',
+      rankColor: 'text-amber-600',
+      iconBg: 'bg-amber-50 text-amber-600 ring-1 ring-amber-200',
+    },
+    {
+      label: 'Peringkat #2',
+      topBar: 'bg-slate-400',
+      rankColor: 'text-slate-600',
+      iconBg: 'bg-slate-100 text-slate-600 ring-1 ring-slate-200',
+    },
+    {
+      label: 'Peringkat #3',
+      topBar: 'bg-orange-400',
+      rankColor: 'text-orange-700',
+      iconBg: 'bg-orange-50 text-orange-700 ring-1 ring-orange-200',
+    },
+  ];
 
   return (
     <section className="space-y-6">
@@ -56,7 +79,7 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
         </div>
 
         {userRank !== null ? (
-          <div className="inline-flex items-center gap-2 text-sm text-slate-700 bg-white border border-slate-200 px-4 py-2 rounded-xl shrink-0 tabular-nums">
+          <div className="inline-flex items-center gap-2 text-sm text-slate-700 surface-card px-4 py-2.5 rounded-xl shrink-0 tabular-nums">
             <Trophy className="w-4 h-4 text-amber-600" aria-hidden="true" />
             <span>
               Peringkat kamu: <strong className="text-slate-900">#{userRank}</strong> dari{' '}
@@ -64,15 +87,67 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
             </span>
           </div>
         ) : (
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-[#6D28D9] bg-violet-50 border border-violet-200 px-4 py-2 rounded-xl shrink-0">
+          <div className="inline-flex items-center gap-2 text-xs font-medium text-[#6D28D9] bg-violet-50 border border-violet-200 px-4 py-2.5 rounded-xl shrink-0">
             <Trophy className="w-4 h-4" aria-hidden="true" />
             <span>Mode Pratinjau Admin · {rankedList.length} peserta</span>
           </div>
         )}
       </div>
 
+      {/* Top 3 Podium Cards */}
+      {topThree.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+          {topThree.map((entry, idx) => {
+            const style = podiumStyles[idx] ?? podiumStyles[2];
+            const gelar = getLevelInfo(entry.xp).current.gelar;
+            return (
+              <div
+                key={entry.id}
+                className={`surface-card rounded-2xl overflow-hidden ${
+                  entry.isCurrentUser ? 'ring-2 ring-[#2563EB]/40' : ''
+                }`}
+              >
+                <div className={`h-1.5 w-full ${style.topBar}`} aria-hidden="true" />
+                <div className="p-5 space-y-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={`text-xs font-bold uppercase tracking-wide ${style.rankColor}`}>
+                      {style.label}
+                    </span>
+                    <div
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center ${style.iconBg}`}
+                    >
+                      {idx === 0 ? (
+                        <Trophy className="w-4 h-4" aria-hidden="true" />
+                      ) : (
+                        <Award className="w-4 h-4" aria-hidden="true" />
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-lg font-extrabold text-slate-900 truncate">
+                      {entry.namaAlias}
+                    </h2>
+                    <p className="text-xs text-slate-500 mt-0.5 truncate">{entry.peranLabel}</p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-baseline justify-between gap-2">
+                    <span className="text-xs text-slate-600">
+                      <strong className="font-mono text-[#1E3A8A]">Lv.{entry.level}</strong> · {gelar}
+                    </span>
+                    <span className="text-xl font-extrabold font-mono text-[#2563EB] tabular-nums">
+                      {entry.totalPoin} <span className="text-xs font-semibold text-slate-500">pts</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
       {/* Next Rank Motivation Banner */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="surface-card rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="text-sm text-slate-700">
           {userRank === null ? (
             <>
@@ -92,15 +167,15 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
             </>
           )}
         </div>
-        <span className="text-xs text-slate-500">100% lokal di perangkat ini</span>
+        <span className="text-xs text-slate-500 shrink-0">Diurutkan berdasarkan total poin</span>
       </div>
 
-      {/* Leaderboard Table */}
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      {/* Full Leaderboard Table */}
+      <div className="surface-card rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600">
+              <tr className="bg-slate-50/90 border-b border-slate-200 text-xs font-semibold text-slate-600">
                 <th className="px-5 py-3.5 w-20">Peringkat</th>
                 <th className="px-5 py-3.5">Alias Pembelajar</th>
                 <th className="px-5 py-3.5">Level &amp; Gelar</th>
@@ -118,8 +193,8 @@ export function LeaderboardView({ currentUser, allUsers }: LeaderboardViewProps)
                     key={entry.id}
                     className={
                       entry.isCurrentUser
-                        ? 'bg-blue-50/70 font-semibold text-slate-900'
-                        : 'hover:bg-slate-50 text-slate-700'
+                        ? 'bg-blue-50/75 font-semibold text-slate-900'
+                        : 'hover:bg-slate-50/80 text-slate-700 transition-colors'
                     }
                   >
                     <td className="px-5 py-4 font-mono font-bold tabular-nums text-slate-900">
