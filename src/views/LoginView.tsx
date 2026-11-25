@@ -157,9 +157,13 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
       {/* Minimal Top Brand Bar */}
       <header className="border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
-          <span className="text-lg sm:text-xl font-extrabold tracking-tight text-[#1E3A8A]">
-            YukNgoding
-          </span>
+          <div className="inline-flex items-center justify-center h-10 sm:h-12 w-[134px] sm:w-[160px] overflow-hidden shrink-0">
+            <img
+              src="/assets/aistudio/logo_yukngoding_7eed5a86.jpg"
+              alt="YukNgoding"
+              className="w-[168px] sm:w-[198px] max-w-none h-auto select-none mix-blend-multiply"
+            />
+          </div>
           <span className="text-xs font-medium text-slate-500">
             Belajar Koding Interaktif untuk Semua
           </span>

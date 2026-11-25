@@ -56,13 +56,18 @@ export function Navbar({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4 sm:gap-8">
-        {/* Zone 1: Single-line Brand Wordmark */}
+        {/* Zone 1: Single-line Brand Logo */}
         <button
           type="button"
           onClick={() => onSelectTab(currentUser.role === 'admin' ? 'admin' : 'dashboard')}
-          className="text-lg sm:text-xl font-extrabold tracking-tight text-[#1E3A8A] whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 rounded-md"
+          aria-label="YukNgoding — Beranda"
+          className="inline-flex items-center justify-center h-10 sm:h-12 w-[134px] sm:w-[160px] overflow-hidden shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
         >
-          YukNgoding
+          <img
+            src="/assets/aistudio/logo_yukngoding_7eed5a86.jpg"
+            alt="YukNgoding"
+            className="w-[168px] sm:w-[198px] max-w-none h-auto select-none mix-blend-multiply"
+          />
         </button>
 
         {/* Zone 2: Desktop Single-Line Navigation Links */}
