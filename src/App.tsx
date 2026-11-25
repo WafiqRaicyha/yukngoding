@@ -215,13 +215,6 @@ export default function App() {
         )}
       </main>
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <span>YukNgoding · Belajar Koding Interaktif untuk Semua</span>
-          <span>100% lokal di browser · Penyimpanan per akun tanpa server eksternal</span>
-        </div>
-      </footer>
-
       <ResetModal
         open={resetModalOpen}
         profileAlias={currentUser.profile.namaAlias}

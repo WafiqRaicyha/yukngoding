@@ -2,7 +2,6 @@ import {
   Eye,
   EyeOff,
   LogIn,
-  ShieldCheck,
   UserPlus,
 } from 'lucide-react';
 import { FormEvent, useState } from 'react';
@@ -176,11 +175,6 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
                 <p className="text-xs font-bold text-emerald-300">Byte · Maskot YukNgoding</p>
                 <p className="text-xs sm:text-sm text-white/95 leading-relaxed">{byteMessage}</p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2 text-xs text-blue-100/90">
-              <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0" aria-hidden="true" />
-              <span>100% lokal di browser · Password di-hash SHA-256 · Tanpa data pribadi</span>
             </div>
           </div>
 
@@ -446,13 +440,6 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
           </div>
         </div>
       </main>
-
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <span>YukNgoding · Belajar Koding Interaktif untuk Semua</span>
-          <span>Penyimpanan lokal perangkat · Privasi terjaga</span>
-        </div>
-      </footer>
     </div>
   );
 }
