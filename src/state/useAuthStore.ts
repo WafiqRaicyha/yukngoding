@@ -44,10 +44,7 @@ function createDefaultAnnouncement(): GlobalAnnouncement {
 
 async function createSeedUsers(): Promise<UserAccount[]> {
   const today = getTodayLocalDateString();
-  const [adminHash, user1Hash] = await Promise.all([
-    hashPassword('admin123'),
-    hashPassword('1234'),
-  ]);
+  const adminHash = await hashPassword('admin123');
 
   return [
     {
@@ -62,36 +59,6 @@ async function createSeedUsers(): Promise<UserAccount[]> {
         temaAksen: 'purple',
       },
       gamifikasi: createEmptyGamifikasi(),
-      createdAt: today,
-      lastActive: today,
-    },
-    {
-      id: 'usr-user-01',
-      username: 'user1',
-      passwordHash: user1Hash,
-      role: 'user',
-      profile: {
-        namaAlias: 'BintangKode',
-        avatar: 'byte-mascot',
-        bio: 'Belajar Python, JavaScript, dan SQL dari dasar!',
-        temaAksen: 'blue',
-      },
-      gamifikasi: {
-        xp: 120,
-        level: 2,
-        totalPoin: 150,
-        badge: ['badge-first'],
-        materiSelesai: {
-          'py-1': {
-            skor: 100,
-            status: 'Selesai',
-            tanggalPenyelesaian: today,
-          },
-        },
-        claimedQuestions: ['q-py-1a', 'q-py-1b'],
-        simulasiSelesai: [],
-        dailyCompletedDates: [],
-      },
       createdAt: today,
       lastActive: today,
     },
@@ -278,11 +245,16 @@ export function useAuthStore() {
 
       if (!loadedUsers) {
         loadedUsers = await createSeedUsers();
-        try {
-          window.localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(loadedUsers));
-        } catch {
-          // Ignore storage quota errors
+      } else {
+        loadedUsers = loadedUsers.filter((u) => u.id !== 'usr-user-01');
+        if (loadedUsers.length === 0) {
+          loadedUsers = await createSeedUsers();
         }
+      }
+      try {
+        window.localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(loadedUsers));
+      } catch {
+        // Ignore storage quota errors
       }
 
       const loadedAnn = loadAnnouncement();

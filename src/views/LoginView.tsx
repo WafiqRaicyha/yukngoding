@@ -1,9 +1,6 @@
 import {
-  ChevronDown,
-  ChevronUp,
   Eye,
   EyeOff,
-  KeyRound,
   LogIn,
   ShieldCheck,
   UserPlus,
@@ -48,9 +45,6 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
   const [regError, setRegError] = useState('');
   const [regSubmitting, setRegSubmitting] = useState(false);
 
-  // Demo credentials accordion
-  const [demoOpen, setDemoOpen] = useState(true);
-
   // Interactive Byte mascot mood & greeting
   const [byteMood, setByteMood] = useState<ByteMood>('idle');
   const [byteMessage, setByteMessage] = useState(
@@ -87,7 +81,7 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
         setLoginError(res.error ?? 'Gagal masuk. Periksa kembali kredensialmu.');
         setByteMood('encourage');
         setByteMessage(
-          'Hmm, username atau password belum cocok. Cek lagi ketikanmu atau lihat Info Akun Demo di bawah.',
+          'Hmm, username atau password belum cocok. Periksa kembali ketikanmu atau daftar akun baru di tab sebelah.',
         );
       }
     } finally {
@@ -136,20 +130,6 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
     } finally {
       setRegSubmitting(false);
     }
-  };
-
-  const fillDemo = (username: string, password: string) => {
-    setMode('login');
-    setLoginUsername(username);
-    setLoginPassword(password);
-    setLoginError('');
-    setLoginSuccessNote('');
-    setByteMood('hint');
-    setByteMessage(
-      username === 'admin'
-        ? 'Kredensial Admin Demo terisi! Klik Masuk untuk membuka Panel Admin.'
-        : 'Kredensial User Demo terisi! Klik Masuk untuk lanjut ke Dashboard Belajar.',
-    );
   };
 
   return (
@@ -285,7 +265,7 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
                       required
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
-                      placeholder="contoh: user1 atau admin"
+                      placeholder="Masukkan username akunmu"
                       className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-[#2563EB]"
                     />
                   </div>
@@ -461,62 +441,6 @@ export function LoginView({ onLogin, onRegister, onAuthSuccess }: LoginViewProps
                     {regSubmitting ? 'Membuat Akun...' : 'Buat Akun Pembelajar'}
                   </button>
                 </form>
-              )}
-            </div>
-
-            {/* Collapsible Demo Account Info Box */}
-            <div className="border border-slate-200 rounded-xl bg-slate-50/80 overflow-hidden">
-              <button
-                type="button"
-                onClick={() => setDemoOpen((prev) => !prev)}
-                aria-expanded={demoOpen}
-                className="w-full px-4 py-3 flex items-center justify-between gap-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-100/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <KeyRound className="w-3.5 h-3.5 text-[#2563EB]" aria-hidden="true" />
-                  <span>Info Akun Demo (Bantuan Uji Coba)</span>
-                </span>
-                {demoOpen ? (
-                  <ChevronUp className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-500" aria-hidden="true" />
-                )}
-              </button>
-
-              {demoOpen && (
-                <div className="px-4 pb-3.5 pt-1 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                  <div className="bg-white border border-slate-200 rounded-lg p-2.5 flex items-center justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="font-bold text-[#1E3A8A]">User Demo (Pembelajar)</p>
-                      <p className="font-mono text-slate-600 mt-0.5">
-                        user1 / 1234
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => fillDemo('user1', '1234')}
-                      className="px-2.5 py-1.5 text-xs font-semibold text-[#2563EB] bg-blue-50 hover:bg-blue-100 rounded-md shrink-0 transition-colors"
-                    >
-                      Isi
-                    </button>
-                  </div>
-
-                  <div className="bg-white border border-slate-200 rounded-lg p-2.5 flex items-center justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="font-bold text-[#6D28D9]">Admin Default</p>
-                      <p className="font-mono text-slate-600 mt-0.5">
-                        admin / admin123
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => fillDemo('admin', 'admin123')}
-                      className="px-2.5 py-1.5 text-xs font-semibold text-[#7C3AED] bg-violet-50 hover:bg-violet-100 rounded-md shrink-0 transition-colors"
-                    >
-                      Isi
-                    </button>
-                  </div>
-                </div>
               )}
             </div>
           </div>
